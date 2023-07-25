@@ -1,3 +1,4 @@
+import math
 import pygame
 from const import *
 from board import *
@@ -9,7 +10,7 @@ class loop:
         self.BLOCK_SIZE = SCREEN_WIDTH // self.ROWS
         self.speed = 4
     def render_background(self,surface):
-        self.BLOCK_SIZE = SCREEN_WIDTH // self.ROWS
+        self.BLOCK_SIZE = SCREEN_WIDTH / self.ROWS
         for row in range(self.ROWS):
             for col in range(self.COLS):
                 if self.board.grid[row][col] == 2:
@@ -27,7 +28,7 @@ class loop:
                     color = (227,193,111)
                 else:
                     color = (184,139,74)
-                square = (col * self.BLOCK_SIZE, row * self.BLOCK_SIZE, self.BLOCK_SIZE, self.BLOCK_SIZE)
+                square = (int(col * self.BLOCK_SIZE), int(row * self.BLOCK_SIZE), math.ceil(self.BLOCK_SIZE), math.ceil(self.BLOCK_SIZE))
 
                 pygame.draw.rect(surface,color,square)
     def render_queen(self,surface):
